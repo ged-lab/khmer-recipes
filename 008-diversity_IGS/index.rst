@@ -35,7 +35,6 @@ The final species abundance for each synthetic sample is as below::
 The synthetic sequencing data sets for the 6 samples are sample_1.fa, sample_2
 .fa, sample_3.fa, etc.
 
-
 .. shell start
 
 .. ::
@@ -44,29 +43,29 @@ The synthetic sequencing data sets for the 6 samples are sample_1.fa, sample_2
    set -e
    
    # create 9 simulated genomes.
-   python ../../nullgraph/make-random-genome.py -l 10000 -s 1  > genomeA.fa
-   python ../../nullgraph/make-random-genome.py -l 10000 -s 2  > genomeB.fa
-   python ../../nullgraph/make-random-genome.py -l 10000 -s 3  > genomeC.fa
-   python ../../nullgraph/make-random-genome.py -l 10000 -s 4  > genomeD.fa
-   python ../../nullgraph/make-random-genome.py -l 10000 -s 5  > genomeE.fa
-   python ../../nullgraph/make-random-genome.py -l 10000 -s 6  > genomeF.fa
-   python ../../nullgraph/make-random-genome.py -l 10000 -s 7  > genomeG.fa
-   python ../../nullgraph/make-random-genome.py -l 10000 -s 8  > genomeH.fa
-   python ../../nullgraph/make-random-genome.py -l 10000 -s 9  > genomeI.fa
+   python ~/dev/nullgraph/make-random-genome.py -l 10000 -s 1  > genomeA.fa
+   python ~/dev/nullgraph/make-random-genome.py -l 10000 -s 2  > genomeB.fa
+   python ~/dev/nullgraph/make-random-genome.py -l 10000 -s 3  > genomeC.fa
+   python ~/dev/nullgraph/make-random-genome.py -l 10000 -s 4  > genomeD.fa
+   python ~/dev/nullgraph/make-random-genome.py -l 10000 -s 5  > genomeE.fa
+   python ~/dev/nullgraph/make-random-genome.py -l 10000 -s 6  > genomeF.fa
+   python ~/dev/nullgraph/make-random-genome.py -l 10000 -s 7  > genomeG.fa
+   python ~/dev/nullgraph/make-random-genome.py -l 10000 -s 8  > genomeH.fa
+   python ~/dev/nullgraph/make-random-genome.py -l 10000 -s 9  > genomeI.fa
  
  
    # build a read set
-   python ../../nullgraph/make-reads.py -C 30 -e 0.00 genomeA.fa > reads_A_30.fa
-   python ../../nullgraph/make-reads.py -C 20 -e 0.00 genomeA.fa > reads_A_20.fa
-   python ../../nullgraph/make-reads.py -C 10 -e 0.00 genomeA.fa > reads_A_10.fa
-   python ../../nullgraph/make-reads.py -C 10 -e 0.00 genomeB.fa > reads_B_10.fa
-   python ../../nullgraph/make-reads.py -C 10 -e 0.00 genomeC.fa > reads_C_10.fa
-   python ../../nullgraph/make-reads.py -C 10 -e 0.00 genomeD.fa > reads_D_10.fa
-   python ../../nullgraph/make-reads.py -C 10 -e 0.00 genomeE.fa > reads_E_10.fa
-   python ../../nullgraph/make-reads.py -C 10 -e 0.00 genomeF.fa > reads_F_10.fa
-   python ../../nullgraph/make-reads.py -C 10 -e 0.00 genomeG.fa > reads_G_10.fa
-   python ../../nullgraph/make-reads.py -C 10 -e 0.00 genomeH.fa > reads_H_10.fa
-   python ../../nullgraph/make-reads.py -C 10 -e 0.00 genomeI.fa > reads_I_10.fa
+   python ~/dev/nullgraph/make-reads.py -C 30 -e 0.00 genomeA.fa > reads_A_30.fa
+   python ~/dev/nullgraph/make-reads.py -C 20 -e 0.00 genomeA.fa > reads_A_20.fa
+   python ~/dev/nullgraph/make-reads.py -C 10 -e 0.00 genomeA.fa > reads_A_10.fa
+   python ~/dev/nullgraph/make-reads.py -C 10 -e 0.00 genomeB.fa > reads_B_10.fa
+   python ~/dev/nullgraph/make-reads.py -C 10 -e 0.00 genomeC.fa > reads_C_10.fa
+   python ~/dev/nullgraph/make-reads.py -C 10 -e 0.00 genomeD.fa > reads_D_10.fa
+   python ~/dev/nullgraph/make-reads.py -C 10 -e 0.00 genomeE.fa > reads_E_10.fa
+   python ~/dev/nullgraph/make-reads.py -C 10 -e 0.00 genomeF.fa > reads_F_10.fa
+   python ~/dev/nullgraph/make-reads.py -C 10 -e 0.00 genomeG.fa > reads_G_10.fa
+   python ~/dev/nullgraph/make-reads.py -C 10 -e 0.00 genomeH.fa > reads_H_10.fa
+   python ~/dev/nullgraph/make-reads.py -C 10 -e 0.00 genomeI.fa > reads_I_10.fa
    
    # build the synthetic data sets for samples
    cat reads_A_30.fa reads_B_10.fa >sample_1.fa
@@ -94,16 +93,17 @@ of memory available to use.
 
 ::
 
-    ls sample_*.kh | awk '{ ORS=" "; print; }'>config.txt
-    printf "\n" >>config.txt
-
-    ls sample_*.fa | awk '{ ORS=" "; print; }' >>config.txt
-    printf "\n" >>config.txt
-    printf "30000000" >>config.txt
+   ls sample_*.kh | awk '{ ORS=" "; print; }'>config.txt
+   printf "\n" >>config.txt
+   ls sample_*.fa | awk '{ ORS=" "; print; }' >>config.txt
+   printf "\n" >>config.txt
+   printf "30000000" >>config.txt
  
-Let's run the script::
+Let's run the script:
 
-   python get_comb_multi.py config.txt
+::
+
+   ./python get_comb_multi.py config.txt
 
 
 Let's check an output file::
@@ -130,7 +130,9 @@ has a coverage as "1" in sample1, is not covered in sample2,3,4, has a coverage
 as "2" in sample5, has a coverage as "1" in sample 6 at last.
 
 To run ``count_spectrum_freq_multiple_files.py``, a file with a list of the 
-".comb" files should be generated beforehand::
+".comb" files should be generated beforehand:
+
+::
 
    ls *.comb >comb.list
    python count_spectrum_freq_multiple_files.py comb.list all_sample.spectrum
@@ -209,11 +211,15 @@ This output file lists all the IGSs and the corresponding abundance across
 the 6 samples in each line.
 
 Next we can use QIIME to do the beta analysis. Before that, we need to 
-convert the IGSs-by-samples matrix into the BIOM format::
+convert the IGSs-by-samples matrix into the BIOM format:
+
+::
 
    biom convert -i  all_sample.spectrum.IGS -o all_sample.spectrum.IGS.biom --table-type="OTU table"
 
-Also, we get some statistics from the BIOM file::
+Also, we get some statistics from the BIOM file:
+
+::
 
    biom summarize-table -i all_sample.spectrum.IGS.biom -o all_sample.spectrum.IGS.biom.summary.txt
 
@@ -250,7 +256,9 @@ to see the interactive PCA figure, like shown below.
    :width: 500px
    
    
-We can also call a seperate script to draw 2D plots::
+We can also call a seperate script to draw 2D plots:
+
+::
 
    make_2d_plots.py -i bdiv_even1000/bray_curtis_pc.txt -m all_sample_MAP.txt -o beta_2d_plots/
 
@@ -280,7 +288,9 @@ The difference is that for higher accuracy, we treat each sample seperately and
 get the abundance distribution of IGSs in each sample.
  
 To do this, instead of using script ``seperate_IGS.py``, we use script 
-``seperate_IGS_for_alpha.py`` to list the IGSs out::
+``seperate_IGS_for_alpha.py`` to list the IGSs out:
+
+::
 
    python seperate_IGS_for_alpha.py all_sample.spectrum all_sample_MAP.txt
 
@@ -290,11 +300,13 @@ Next, the same as beta-diversity procedure::
    biom convert -i all_sample.spectrum.IGS.alpha -o all_sample.spectrum.IGS.alpha.biom --table-type="OTU table"
    biom summarize-table -i  all_sample.spectrum.IGS.alpha.biom -o all_sample.spectrum.IGS.alpha.biom.summary.txt
 
-We'd like to calculate chao1 estimator, so we create a parameter file firstly::
+We'd like to calculate chao1 estimator, so we create a parameter file firstly:
+::
 
    echo "alpha_diversity:metrics chao1,observed_species" > alpha_params.txt
 
-Then run alpha diversity pipeline::
+Then run alpha diversity pipeline:
+::
 
    alpha_rarefaction.py -i all_sample.spectrum.IGS.alpha.biom -m all_sample_MAP.txt -o wf_arare/ -p alpha_params.txt -f
 
