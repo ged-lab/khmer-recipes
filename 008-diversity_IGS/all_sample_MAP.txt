@@ -1,0 +1,7 @@
+#SampleID	BarcodeSequence	LinkerPrimerSequence	Description
+sample1	A	A	AAAB
+sample2	A	A	AABC
+sample3	A	A	ABCD
+sample4	A	A	ABCE
+sample5	A	A	AFGH
+sample6	A	A	IFGH
