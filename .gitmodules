@@ -1,0 +1,9 @@
+[submodule "literate-resting"]
+	path = literate-resting
+	url = https://github.com/ged-lab/literate-resting.git
+[submodule "nullgraph"]
+	path = nullgraph
+	url = https://github.com/ged-lab/nullgraph.git
+[submodule "khmer"]
+	path = khmer
+	url = https://github.com/ged-lab/khmer.git

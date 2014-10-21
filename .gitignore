@@ -1,4 +1,6 @@
 *.py[co]
+*.bak
+khmerenv
 
 # Packages
 *.egg

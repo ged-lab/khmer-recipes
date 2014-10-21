@@ -23,28 +23,28 @@ simply specify the khmer release required.
 
 .. ::
 
-   . ~/dev/ipy7/bin/activate
+   . ../khmerenv/bin/activate
    set -e
    
    # make a 500 bp repeat
-   python ~/dev/nullgraph/make-random-genome.py -l 500 -s 10 > repeat.fa
+   python ../nullgraph/make-random-genome.py -l 500 -s 10 > repeat.fa
    
    # create a genome with 5kb unique sequence interspersed with 5x 500 bp
    # repeats.
    echo '>genome' > genome.fa
    cat repeat.fa | grep -v ^'>' >> genome.fa
-   python ~/dev/nullgraph/make-random-genome.py -l 1000 -s 1 | grep -v ^'>' >> genome.fa
+   python ../nullgraph/make-random-genome.py -l 1000 -s 1 | grep -v ^'>' >> genome.fa
    cat repeat.fa | grep -v ^'>' >> genome.fa
-   python ~/dev/nullgraph/make-random-genome.py -l 1000 -s 2 | grep -v ^'>' >> genome.fa
+   python ../nullgraph/make-random-genome.py -l 1000 -s 2 | grep -v ^'>' >> genome.fa
    cat repeat.fa | grep -v ^'>' >> genome.fa
-   python ~/dev/nullgraph/make-random-genome.py -l 1000 -s 3 | grep -v ^'>' >> genome.fa
+   python ../nullgraph/make-random-genome.py -l 1000 -s 3 | grep -v ^'>' >> genome.fa
    cat repeat.fa | grep -v ^'>' >> genome.fa
-   python ~/dev/nullgraph/make-random-genome.py -l 1000 -s 4 | grep -v ^'>' >> genome.fa
+   python ../nullgraph/make-random-genome.py -l 1000 -s 4 | grep -v ^'>' >> genome.fa
    cat repeat.fa | grep -v ^'>' >> genome.fa
-   python ~/dev/nullgraph/make-random-genome.py -l 1000 -s 5 | grep -v ^'>' >> genome.fa
+   python ../nullgraph/make-random-genome.py -l 1000 -s 5 | grep -v ^'>' >> genome.fa
    
    # build a read set
-   python ~/dev/nullgraph/make-reads.py -C 150 genome.fa > reads.fa
+   python ../nullgraph/make-reads.py -C 150 genome.fa > reads.fa
 
 Let's assume you have a simple genome with some 5x repeats, and you've
 done some shotgun sequencing to a coverage of 150 or higher.  If your reads are
@@ -52,7 +52,7 @@ in ``reads.fa``
 ::
    
    load-into-counting.py -x 1e8 -k 20 reads.kh reads.fa
-   ~/dev/khmer/sandbox/calc-median-distribution.py reads.kh reads.fa reads-cov.dist
+   ../khmer/sandbox/calc-median-distribution.py reads.kh reads.fa reads-cov.dist
    ./plot-coverage-dist.py reads-cov.dist reads-cov.png --xmax=600 --ymax=500
 
 and looks like this:
@@ -66,7 +66,7 @@ Now use ``collect-reads.py`` to subset the data to a lower average coverage
 of 50
 ::
 
-   ~/dev/khmer/sandbox/collect-reads.py -x 1e8 -C 50 -k 20 reads.subset.kh reads.fa -o reads.subset.fa
+   ../khmer/sandbox/collect-reads.py -x 1e8 -C 50 -k 20 reads.subset.kh reads.fa -o reads.subset.fa
 
 Here, ``collect-reads.py`` is walking through the data set and
 computing a running average of the coverage of the last 1000 reads.
@@ -75,7 +75,7 @@ collecting the reads.  Take a look at the read coverage spectrum for
 the subsetted data:
 ::
 
-   ~/dev/khmer/sandbox/calc-median-distribution.py reads.subset.kh reads.subset.fa reads-subset.dist
+   ../khmer/sandbox/calc-median-distribution.py reads.subset.kh reads.subset.fa reads-subset.dist
    ./plot-coverage-dist.py reads-subset.dist reads-subset.png --xmax=600 --ymax=500
 
 and compare the resulting plot with the one above --
@@ -102,14 +102,14 @@ original reads, this will then give you _all_ the reads that cluster
 by coverage with that peak.  For example,
 ::
 
-   ~/dev/khmer/sandbox/slice-reads-by-coverage.py reads.subset.kh reads.fa reads-repeats.fa -m 200 -M 300
+   ../khmer/sandbox/slice-reads-by-coverage.py reads.subset.kh reads.fa reads-repeats.fa -m 200 -M 300
 
 will give you *all* the reads from the repetitive component, which will be
 much higher coverage in the combined data set; take a look:
 ::
 
    load-into-counting.py -x 1e8 -k 20 reads-repeats.kh reads-repeats.fa
-   ~/dev/khmer/sandbox/calc-median-distribution.py reads-repeats.kh reads-repeats.fa reads-repeats.dist
+   ../khmer/sandbox/calc-median-distribution.py reads-repeats.kh reads-repeats.fa reads-repeats.dist
    ./plot-coverage-dist.py reads-repeats.dist reads-repeats.png --xmax=600 --ymax=500
 
 .. image:: reads-repeats.png

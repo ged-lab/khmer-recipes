@@ -29,28 +29,28 @@ and simply specify the khmer release required.
 
 .. ::
 
-   . ~/dev/ipy7/bin/activate
+   . ../khmerenv/bin/activate
    set -e
    
    # make a 500 bp repeat
-   python ~/dev/nullgraph/make-random-genome.py -l 500 -s 10 > repeat.fa
+   python ../nullgraph/make-random-genome.py -l 500 -s 10 > repeat.fa
    
    # create a genome with 5kb unique sequence interspersed with 5x 500 bp
    # repeats.
    echo '>genome' > genome.fa
    cat repeat.fa | grep -v ^'>' >> genome.fa
-   python ~/dev/nullgraph/make-random-genome.py -l 1000 -s 1 | grep -v ^'>' >> genome.fa
+   python ../nullgraph/make-random-genome.py -l 1000 -s 1 | grep -v ^'>' >> genome.fa
    cat repeat.fa | grep -v ^'>' >> genome.fa
-   python ~/dev/nullgraph/make-random-genome.py -l 1000 -s 2 | grep -v ^'>' >> genome.fa
+   python ../nullgraph/make-random-genome.py -l 1000 -s 2 | grep -v ^'>' >> genome.fa
    cat repeat.fa | grep -v ^'>' >> genome.fa
-   python ~/dev/nullgraph/make-random-genome.py -l 1000 -s 3 | grep -v ^'>' >> genome.fa
+   python ../nullgraph/make-random-genome.py -l 1000 -s 3 | grep -v ^'>' >> genome.fa
    cat repeat.fa | grep -v ^'>' >> genome.fa
-   python ~/dev/nullgraph/make-random-genome.py -l 1000 -s 4 | grep -v ^'>' >> genome.fa
+   python ../nullgraph/make-random-genome.py -l 1000 -s 4 | grep -v ^'>' >> genome.fa
    cat repeat.fa | grep -v ^'>' >> genome.fa
-   python ~/dev/nullgraph/make-random-genome.py -l 1000 -s 5 | grep -v ^'>' >> genome.fa
+   python ../nullgraph/make-random-genome.py -l 1000 -s 5 | grep -v ^'>' >> genome.fa
    
    # build a read set
-   python ~/dev/nullgraph/make-reads.py -C 150 genome.fa > reads.fa
+   python ../nullgraph/make-reads.py -C 150 genome.fa > reads.fa
 
 If you have a collection of short reads, and you plot the k-mer abundance
 spectrum, you may note that there are many low-abundance k-mers -- look
@@ -81,7 +81,7 @@ You can use the sandbox script ``trim-low-abund.py`` to efficiently
 trim sequences at these k-mers:
 ::
 
-   ~/dev/khmer/sandbox/trim-low-abund.py -x 1e8 -k 20 reads.fa
+   ../khmer/sandbox/trim-low-abund.py -x 1e8 -k 20 reads.fa
 
 (By default, trim-low-abund trims k-mers that are unique in reads that
 have 20 or higher coverage.  You can change the multiplicity of trimming

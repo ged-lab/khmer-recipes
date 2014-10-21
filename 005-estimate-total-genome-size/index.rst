@@ -21,28 +21,28 @@ sequencing.
 
 .. ::
 
-   . ~/dev/ipy7/bin/activate
+   . ../khmerenv/bin/activate
    set -e
    
    # make a 500 bp repeat
-   python ~/dev/nullgraph/make-random-genome.py -l 500 -s 10 > repeat.fa
+   python ../nullgraph/make-random-genome.py -l 500 -s 10 > repeat.fa
    
    # create a genome with 5kb unique sequence interspersed with 5x 500 bp
    # repeats.
    echo '>genome' > genome.fa
    cat repeat.fa | grep -v ^'>' >> genome.fa
-   python ~/dev/nullgraph/make-random-genome.py -l 1000 -s 1 | grep -v ^'>' >> genome.fa
+   python ../nullgraph/make-random-genome.py -l 1000 -s 1 | grep -v ^'>' >> genome.fa
    cat repeat.fa | grep -v ^'>' >> genome.fa
-   python ~/dev/nullgraph/make-random-genome.py -l 1000 -s 2 | grep -v ^'>' >> genome.fa
+   python ../nullgraph/make-random-genome.py -l 1000 -s 2 | grep -v ^'>' >> genome.fa
    cat repeat.fa | grep -v ^'>' >> genome.fa
-   python ~/dev/nullgraph/make-random-genome.py -l 1000 -s 3 | grep -v ^'>' >> genome.fa
+   python ../nullgraph/make-random-genome.py -l 1000 -s 3 | grep -v ^'>' >> genome.fa
    cat repeat.fa | grep -v ^'>' >> genome.fa
-   python ~/dev/nullgraph/make-random-genome.py -l 1000 -s 4 | grep -v ^'>' >> genome.fa
+   python ../nullgraph/make-random-genome.py -l 1000 -s 4 | grep -v ^'>' >> genome.fa
    cat repeat.fa | grep -v ^'>' >> genome.fa
-   python ~/dev/nullgraph/make-random-genome.py -l 1000 -s 5 | grep -v ^'>' >> genome.fa
+   python ../nullgraph/make-random-genome.py -l 1000 -s 5 | grep -v ^'>' >> genome.fa
    
    # build a read set
-   python ~/dev/nullgraph/make-reads.py -C 150 genome.fa > reads.fa
+   python ../nullgraph/make-reads.py -C 150 genome.fa > reads.fa
 
 ----
 
@@ -53,7 +53,7 @@ you can generate a read coverage spectrum from your genome like so:
 ::
 
    load-into-counting.py -x 1e8 -k 20 reads.kh reads.fa
-   ~/dev/khmer/sandbox/calc-median-distribution.py reads.kh reads.fa reads-cov.dist
+   ../khmer/sandbox/calc-median-distribution.py reads.kh reads.fa reads-cov.dist
    ./plot-coverage-dist.py reads-cov.dist reads-cov.png --xmax=600 --ymax=500
 
 and the result looks like this:
