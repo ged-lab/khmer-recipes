@@ -1,6 +1,9 @@
 *.py[co]
 *.bak
 khmerenv
+khmer
+literate-resting
+nullgraph
 
 # Packages
 *.egg
