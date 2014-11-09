@@ -7,9 +7,9 @@ set -e
 cd "$(dirname $0)"
 
 # checkout git submodules in case you didn't use clone --recursive
-git clone --recursive https://github.com/ged-lab/literate-resting.git
-git clone --recursive https://github.com/ged-lab/nullgraph.git
-git clone --recursive https://github.com/ged-lab/khmer.git
+test -d literate-resting || git clone --recursive https://github.com/ged-lab/literate-resting.git
+test -d nullgraph || git clone --recursive https://github.com/ged-lab/nullgraph.git
+test -d khmer || git clone --recursive https://github.com/ged-lab/khmer.git
 
 
 # Remove, recreate and activate virtualenv we'll use
