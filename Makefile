@@ -18,7 +18,8 @@ I18NSPHINXOPTS  = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
 
 all: recipes html
 
-recipes: 
+recipes:
+	./bootstrap.sh
 	./recipes-all.sh all
 
 help:
@@ -44,7 +45,8 @@ help:
 	@echo "  doctest    to run all doctests embedded in the documentation (if enabled)"
 
 clean:
-	-rm -rf $(BUILDDIR)/*
+	rm -rf $(BUILDDIR)/*
+	rm -rf khmer/ khmerenv/ nullgraph/ literate-resting/
 	./recipes-all.sh clean
 
 html:
