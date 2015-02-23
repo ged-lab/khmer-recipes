@@ -14,4 +14,4 @@ reads-cov.png: index.sh
 	bash index.sh
 
 index.html: index.rst
-	../khmerenv/bin/rst2html.py index.rst index.html
+	rst2html.py index.rst index.html
