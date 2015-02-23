@@ -7,7 +7,7 @@ distclean: clean
 	-rm -f *.png report.txt reads.fa.keep
 
 index.sh: index.rst
-	~/dev/literate-resting/scan.sh index.rst
+	../literate-resting/scan.sh index.rst
 	mv index.rst.sh index.sh
 
 saturation.png: index.sh

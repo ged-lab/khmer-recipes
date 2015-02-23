@@ -32,11 +32,11 @@ and simply specify the khmer release required.
 
 .. ::
 
-   . ~/dev/ipy7/bin/activate
+   . ../khmerenv/bin/activate
    set -e
    
    # build a read set
-   python ~/dev/nullgraph/make-biased-reads.py -C 10 metagenome.fa > reads.fa
+   python ../nullgraph/make-biased-reads.py -C 10 metagenome.fa > reads.fa
 
 Suppose you have a metagenome with several different coverage peaks;
 here, in this simulated data set, there are three: one at 10, one at
@@ -44,7 +44,7 @@ here, in this simulated data set, there are three: one at 10, one at
 ::
 
    load-into-counting.py -x 1e8 -k 20 reads.kh reads.fa
-   ~/dev/khmer/sandbox/calc-median-distribution.py reads.kh reads.fa reads-cov.dist
+   ../khmer/sandbox/calc-median-distribution.py reads.kh reads.fa reads-cov.dist
    ./plot-coverage-dist.py reads-cov.dist reads-cov.png --xmax=350
 
 .. image:: reads-cov.png
@@ -70,7 +70,7 @@ k-mers that are in high-coverage reads.  With -V, low-abundance k-mers
 in low-coverage reads are kept; these are much more likely to be
 correct than a low-abundance k-mer in a high-coverage read.  ::
 
-   ~/dev/khmer/sandbox/trim-low-abund.py -x 1e8 -k 20 -V reads.fa
+   ../khmer/sandbox/trim-low-abund.py -x 1e8 -k 20 -V reads.fa
 
 (By default, trim-low-abund trims k-mers that are unique in reads that
 have 20 or higher coverage.  You can change the multiplicity of trimming
@@ -94,7 +94,7 @@ due to the trimming; but there are still reads at the 10x peak:
 ::
 
    load-into-counting.py -x 1e8 -k 20 reads-trim.kh reads.fa.abundtrim
-   ~/dev/khmer/sandbox/calc-median-distribution.py reads-trim.kh reads.fa.abundtrim reads-cov-trim.dist
+   ../khmer/sandbox/calc-median-distribution.py reads-trim.kh reads.fa.abundtrim reads-cov-trim.dist
    ./plot-coverage-dist.py reads-cov-trim.dist reads-cov-trim.png --xmax=350
 
 .. image:: reads-cov-trim.png

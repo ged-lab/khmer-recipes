@@ -7,7 +7,7 @@ distclean: clean
 	-rm -f *.png
 
 index.sh: index.rst
-	~/dev/literate-resting/scan.sh index.rst
+	../literate-resting/scan.sh index.rst
 	mv index.rst.sh index.sh
 
 reads-trim-dist.png: index.sh
